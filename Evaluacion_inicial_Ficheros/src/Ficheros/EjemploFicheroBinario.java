@@ -44,29 +44,35 @@ public class EjemploFicheroBinario {
 	    }
 	
 	 static private void leerDatos() {
-		    File fich = new File("fich2.dat");
+		    File fich = new File("fichDatos.dat");
 
-		    DataInputStream diS;
+		    DataInputStream dis;
 
 		    try {
-		        diS = new DataInputStream(new FileInputStream(fich));
+		        dis = new DataInputStream(new FileInputStream(fich));
 
-		        while (true) {
-		            String nombre = diS.readUTF();
-		            int edad = diS.readInt();
+		        String nom;
+		        int edad;
+		        try {
+		            while(true) {
+		                nom = dis.readUTF();
+		                edad = dis.readInt();
+		                System.out.println("Nombre: " + nom + " Edad: " + edad);
+		            }
 
-		            System.out.println("Nombre: " + nombre + ", Edad: " + edad);
+		        } catch (EOFException e) {
+		            // TODO: handle exception
+		            System.out.println("Fin de fichero");
 		        }
 
-		    } catch (EOFException e) {
-		    	System.out.println("Fin de fichero");
-		    
-		    } catch (FileNotFoundException fnfe) {
-		        System.err.println("Archivo no encontrado: " + fnfe.getMessage());
-		    } catch (IOException ioex) {
-		        System.err.println("Error de lectura: " + ioex.getMessage());
+		        dis.close();
+
+		    } catch (IOException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		    }
 		}
-	 }
+
 
 	
 	static private void escribir() {
