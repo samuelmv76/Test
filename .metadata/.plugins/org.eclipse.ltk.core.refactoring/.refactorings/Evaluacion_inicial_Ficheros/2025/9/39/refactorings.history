@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move element &apos;fich.txt&apos; to &apos;Evaluacion_inicial_Ficheros&apos;&#x0D;&#x0A;- Original project: &apos;Evaluacion_inicial_Ficheros&apos;&#x0D;&#x0A;- Destination element: &apos;Evaluacion_inicial_Ficheros&apos;&#x0D;&#x0A;- Original element: &apos;fich.txt&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move file" destination="=Evaluacion_inicial_Ficheros" element1="src/fich.txt" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1758558000465" units="0" version="1.0"/>
-</session>
