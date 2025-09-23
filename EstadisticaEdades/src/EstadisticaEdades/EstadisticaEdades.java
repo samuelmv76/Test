@@ -11,8 +11,8 @@ public class EstadisticaEdades {
 
         int contador = 0;
         int suma = 0;
-        int menor =0;
-        int mayor =90000;
+        int menor =100;
+        int mayor =0;
         int menoresDeEdad = 0;
 
         int[] edades = new int[1000];
@@ -50,10 +50,10 @@ public class EstadisticaEdades {
         double desviacion = Math.sqrt(sumaDiferencias / contador);
 
         System.out.println("Número de alumnos procesados: " + contador);
-        System.out.printf("Media aritmética de las edades: %.2f\n", media);
+        System.out.println("Media aritmética de las edades: "+ media);
         System.out.println("Edad del alumno/a más joven: " + menor);
         System.out.println("Edad del alumno/a más viejo: " + mayor);
         System.out.println("Número de alumnos/as menores de edad: " + menoresDeEdad);
-        System.out.printf("Desviación estándar de las edades: %.2f\n", desviacion);
+        System.out.println("Desviación estándar de las edades: "+ desviacion);
     }
 }
