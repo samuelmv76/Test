@@ -1,6 +1,8 @@
 package Ficheros;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,22 +12,30 @@ import java.io.IOException;
 public class EjemploFicheroBinario {
 
 	public static void main(String[] args) {	
-		escribir();
-		leer();
+		escribirDatos();
+		leerDatos();
 	}
 	
 	
 	 static private void escribirDatos() {
-	        File f = new File("fich2.dat");
+	        File fich = new File("fich2.dat");
 
-	        String[] nombres = {"Sergio", "Pablo", "Laura", "Lorena"};
-	        int[] edades = {23, 43, 54, 2};
-
-	        try (DataOutputStream dOs = new DataOutputStream(new FileOutputStream(f))) {
-	            for (int i = 0; i < nombres.length; i++) {
-	                dOs.writeChars(nombres[i]);  
-	                dOs.writeInt(edades[i]);
-	            }
+	        DataOutputStream doS;
+	        
+	        String [] nombre = {"Sergio", "Pedro", "Juan","Laura"};
+	        int [] edades = {23,43,54,65};
+	        
+	        
+	        try {
+	        
+	        	doS = new DataOutputStream(new FileOutputStream(fich));
+	        
+	        	for(int i=0; i<4; i++) {
+	        		doS.writeUTF(nombre[i]);
+	        		doS.writeInt(edades[i]);
+	        	}
+	        	doS.close();
+	        	
 	        } catch (FileNotFoundException e) {
 	            System.err.println("Archivo no encontrado: " + e.getMessage());
 	        } catch (IOException ioex) {
@@ -33,10 +43,31 @@ public class EjemploFicheroBinario {
 	        }
 	    }
 	
-	static private void leerDatos() {
-		
-	}
-	
+	 static private void leerDatos() {
+		    File fich = new File("fich2.dat");
+
+		    DataInputStream diS;
+
+		    try {
+		        diS = new DataInputStream(new FileInputStream(fich));
+
+		        while (true) {
+		            String nombre = diS.readUTF();
+		            int edad = diS.readInt();
+
+		            System.out.println("Nombre: " + nombre + ", Edad: " + edad);
+		        }
+
+		    } catch (EOFException e) {
+		    	System.out.println("Fin de fichero");
+		    
+		    } catch (FileNotFoundException fnfe) {
+		        System.err.println("Archivo no encontrado: " + fnfe.getMessage());
+		    } catch (IOException ioex) {
+		        System.err.println("Error de lectura: " + ioex.getMessage());
+		}
+	 }
+
 	
 	static private void escribir() {
 	
