@@ -1,0 +1,27 @@
+package Animal;
+
+public class Tortuga extends Animal{
+
+	public Tortuga(int velocidad, String nombre) {
+		super(velocidad, nombre);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while(true) {
+			//System.out.println("Esta es una ejecucion de "+this.nombre);
+			System.out.println("");
+			try {
+				correr();
+				
+				Thread.sleep(1000);//1 sesgundo
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+}

@@ -1,0 +1,18 @@
+package Animal;
+
+
+public class Main {
+
+	public Main() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) {
+		
+		
+		Animal caballo = new Animal(10.0,"peny"); 
+		Animal gallina = new Animal(10.0,"peny"); 
+		Animal tortuga = new Animal(10.0,"peny"); 
+	}
+
+}

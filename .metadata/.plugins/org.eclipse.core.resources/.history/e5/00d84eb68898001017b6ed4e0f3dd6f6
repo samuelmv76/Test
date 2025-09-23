@@ -1,0 +1,16 @@
+package Animal;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Animal caballo = new Animal(5,"caballo"); 
+		Animal gallina = new Animal(3,"gallina"); 
+		Animal tortuga = new Animal(1,"mbappe"); 
+		
+		Thread hilo1 = new Thread(caballo);
+		hilo1.start();
+	}
+
+}

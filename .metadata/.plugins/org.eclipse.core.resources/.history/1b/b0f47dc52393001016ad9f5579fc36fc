@@ -1,0 +1,10 @@
+package BibliotecaApp;
+
+public class Revista {
+
+	private titulo
+	public Revista() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

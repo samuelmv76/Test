@@ -1,0 +1,31 @@
+package Animal;
+
+public class Liebre extends Animal{
+
+	public Liebre(int velocidad, String nombre) {
+		super(velocidad, nombre);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	@Override
+	public void run() {
+		// Liebre contart 4 turnos corre y descansa 8 turnos
+		int cont = 0;
+		while(true) {
+			//System.out.println("Esta es una ejecucion de "+this.nombre);
+			System.out.println("");
+			try {
+				
+				correr();
+				cont ++;
+				Thread.sleep(1000);//1 sesgundo
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+}

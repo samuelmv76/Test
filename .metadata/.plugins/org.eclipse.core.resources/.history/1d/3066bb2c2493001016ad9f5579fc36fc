@@ -1,0 +1,29 @@
+package BibliotecaApp;
+
+public class Revista {
+
+	private String tituloRevista;
+	private int anioRevista;
+	
+	public Revista() {
+		
+	}
+
+	public String getTituloRevista() {
+		return tituloRevista;
+	}
+
+	public void setTituloRevista(String tituloRevista) {
+		this.tituloRevista = tituloRevista;
+	}
+
+	public int getAnioRevista() {
+		return anioRevista;
+	}
+
+	public void setAnioRevista(int anioRevista) {
+		this.anioRevista = anioRevista;
+	}
+
+	
+}

@@ -1,0 +1,15 @@
+package BibliotecaApp;
+
+public class Publicaciones {
+
+	public Publicaciones() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		
+	}
+	
+
+}

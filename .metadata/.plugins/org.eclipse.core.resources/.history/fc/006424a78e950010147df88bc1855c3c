@@ -1,0 +1,16 @@
+package Animal;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		
+		Animal caballo = new Animal(10,"peny"); 
+		Animal gallina = new Animal(10,"peny"); 
+		Animal tortuga = new Animal(10,"peny"); 
+		
+		
+	}
+
+}

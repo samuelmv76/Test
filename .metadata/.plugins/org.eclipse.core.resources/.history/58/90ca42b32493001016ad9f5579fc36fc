@@ -1,0 +1,12 @@
+package BibliotecaApp;
+
+public class Publicaciones {
+
+	
+	
+	public Publicaciones() {
+		super();
+	}
+	
+
+}

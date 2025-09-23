@@ -1,0 +1,10 @@
+package BibliotecaApp;
+
+public class Revista extends Publicaciones{
+
+	public Revista() {
+		
+	}
+
+	
+}

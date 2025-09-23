@@ -1,0 +1,16 @@
+package Animal;
+
+public class Animal {
+
+	public Animal() {
+		// TODO Auto-generated constructor stub
+	/*3 atrib vel nom distancia
+	metrodo 
+		correr
+		decir posicion
+	*/
+		
+	}
+
+	
+}

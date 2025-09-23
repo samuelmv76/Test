@@ -1,0 +1,9 @@
+package BibliotecaApp;
+
+public class Publicaciones {
+
+	public Publicaciones() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
