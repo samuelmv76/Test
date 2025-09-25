@@ -1,0 +1,29 @@
+<div class="contenedor">
+    
+    <div *ngIf="numero > 5; else mayora5">
+        <div class="circulo rojo"></div>
+    </div>
+    <ng-template #mayora5>
+        <div class="circulo apagado"></div>
+    </ng-template>
+
+    <div *ngIf="numero > 1; else menor1">
+        <div class="circulo naranja"></div>
+    </div>
+    <ng-template #menor1>
+        <div class="circulo apagado"></div>
+    </ng-template>
+
+    <div *ngIf="numero > 0; else menor0">
+        <div class="circulo verde"></div>
+    </div>
+    <ng-template #menor0>
+        <div class="circulo apagado"></div>
+    </ng-template>
+</div>
+
+
+<p class="num">{{ numero }}</p>
+<button (click)="incrementar()">+1</button>
+<button (click)="decrementar()">-1</button>
+<button (click)="resetear()">Reset</button>
