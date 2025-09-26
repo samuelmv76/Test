@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Matatopos {
   contador: number = 0;
-  numeroAleatorio: number = Math.floor(Math.random() * 9) + 1;//numero aleatorio del 1 al 9
+  numeroAleatorio: number = Math.floor(Math.random() * 2) + 1;//numero aleatorio del 1 al 9
 
 
   matartopo() {
