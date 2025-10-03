@@ -6,7 +6,7 @@ public class Perro extends Animal{
 
 	public Perro(String nombre, int edad, String raza) {
 		super(nombre, edad);
-		// TODO Auto-generated constructor stub
+		this.raza = raza;
 	}
 	
 	

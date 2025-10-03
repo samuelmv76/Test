@@ -7,9 +7,10 @@ public class Gato extends Animal{
 	
 	public Gato(String nombre, int edad, int longitudBigotes) {
 		super(nombre, edad);
-		// TODO Auto-generated constructor stub
+		this.longitudBigotes = longitudBigotes;
 	}
 
+	
 	public void maullar() {
 		System.out.println("Miau Miau");
 	}
