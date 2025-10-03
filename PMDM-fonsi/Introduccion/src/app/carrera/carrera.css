@@ -1,0 +1,36 @@
+.chibi {
+    width: 1200px;
+    height: 100px;
+    background-color: aqua;
+    background-image: url('/images/anubis.png');
+    animation: run 1s steps(12) infinite;
+}
+
+@keyframes run {
+    0% { background-position-x: 0; }
+    100% { background-position-x: -1200px; }
+}
+
+
+
+.chibi2{
+    width: 100px;
+    height: 100px;
+    background-image: url('/images/old-guy.png');
+    animation: run 1s steps(12) infinite, animacion1 8s infinite;
+}
+
+@keyframes animacion1{
+    0%{
+        transform: translateX(0); transform: scaleX(1);
+    }
+    25%{
+        transform: translateX(500px); transform: scaleX(1);
+    } I
+    75%{
+        transform: translateX(-500px);
+    }
+    0%{
+        transform: translateX(0);
+    }
+}

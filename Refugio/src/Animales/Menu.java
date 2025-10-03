@@ -63,7 +63,7 @@ public class Menu {
 			  case 2:
 					for(int i=0; i<animales.size();i++) {
 						animales.get(i).mostrarDatos();
-					}
+					}	
 				  break;
 			 }
 			 
