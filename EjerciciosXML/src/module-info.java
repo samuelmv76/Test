@@ -4,6 +4,6 @@
 /**
  * 
  */
-module Evaluacion_inicial_Ficheros {
+module EjerciciosXML {
 	requires java.xml;
 }
