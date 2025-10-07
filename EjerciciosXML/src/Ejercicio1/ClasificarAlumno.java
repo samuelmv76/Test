@@ -74,10 +74,21 @@ public class ClasificarAlumno {
 				Document doc = dBuilder.newDocument();
 				
 				Element rootElement = doc.createElement("notas");
-				doc.appendChild(doc);
-			} catch(){
+				doc.appendChild(rootElement);
 				
+				crearSeleccion(doc, rootElement, "suspensos", suspensos);
+				crearSeleccion(doc, rootElement, "aprobados", aprobados);
+				crearSeleccion(doc, rootElement, "notables", notables);
+				crearSeleccion(doc, rootElement, "sobresalientes", sobresalientes);
+				
+			} catch(ParserConfigurationException e){
+				e.printStackTrace();
 			}
+	}
+	
+	private static void crearSeleccion(Document doc, Element rootElement, String string, List<Alumno> suspensos) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
