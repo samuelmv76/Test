@@ -32,7 +32,7 @@ public class LeerEmpleados {
 		}
 		
 		double mediaEdad =sumaEdades/edadesVentas.size();
-	
+		 System.out.println("La media de edad de los empleados del departamento de ventas es: " + mediaEdad);
 	
 	} catch(ParserConfigurationException | SAXException | IOException e) {
 		e.printStackTrace();
