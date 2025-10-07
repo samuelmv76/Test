@@ -1,0 +1,13 @@
+.arquero {
+  width: 100px;
+  height: 100px;
+  background-image: url('/assets/Archer/Attack_1.png');
+  background-repeat: no-repeat;
+  cursor: pointer;
+  animation: run 1s steps(12) infinite;
+}
+
+@keyframes run {
+  from { background-position: 0 0; }
+  to { background-position: -1200px 0; } /* 100px * 12 frames */
+}

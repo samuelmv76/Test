@@ -1,9 +1,0 @@
-.example-spacer {
-  flex: 1 1 auto;
-}
-.opcion{
-    cursor: pointer;
-}
-.opcion:hover{
-        font-weight: 700;
-}
