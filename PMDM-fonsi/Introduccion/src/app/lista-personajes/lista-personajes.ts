@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-lista-personajes',
   imports: [],
   template: `
-  <div *ngFor="let item of items">
-    {{ item }}
+  <div *ngFor="let personaje of personajes">
+    {{ personaje.nombre }} - {{ personaje.raza }} - {{ personaje.poder }}
   </div>
 `,
   templateUrl: './lista-personajes.html',
