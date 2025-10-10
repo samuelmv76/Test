@@ -1,1 +1,5 @@
-<p>lista-personajes works!</p>
+<div class="personajes-grid">
+  @for (personaje of personajes; track personaje.nombre) {
+    <app-ficha-personaje [personaje]="personaje"></app-ficha-personaje>
+  }
+</div>

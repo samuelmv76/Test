@@ -1,0 +1,54 @@
+.character-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.character-card:hover {
+  transform: translateY(-5px);
+}
+
+.character-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.character-card h3 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.character-card p {
+  margin: 4px 0;
+  color: #666;
+}
+
+.power-level span {
+  color: #f1c40f;
+  font-size: 1.2em;
+}
+
+/* Race-specific background colors */
+.saiyan {
+  background-color: #ffdddd;
+}
+
+.namekian {
+  background-color: #ddffdd;
+}
+
+.frieza-race {
+  background-color: #e8ddff;
+}
+
+.android {
+  background-color: #ddffff;
+}

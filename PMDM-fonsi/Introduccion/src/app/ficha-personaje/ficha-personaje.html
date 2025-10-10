@@ -1,1 +1,11 @@
-<p>ficha-personaje works!</p>
+<div class="character-card" [ngClass]="personaje.raza.toLowerCase().replace(' ', '-')">
+  <img [src]="personaje.imagen" [alt]="personaje.nombre">
+  <h3>{{ personaje.nombre }}</h3>
+  <p>Raza: {{ personaje.raza }}</p>
+  <div class="power-level">
+    Poder:
+    @for (star of getStars(personaje.poder); track $index) {
+      <span>⭐</span>
+    }
+  </div>
+</div>
