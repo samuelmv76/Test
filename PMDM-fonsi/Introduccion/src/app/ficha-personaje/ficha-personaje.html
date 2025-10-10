@@ -4,8 +4,13 @@
   <p>Raza: {{ personaje.raza }}</p>
   <div class="power-level">
     Poder:
-    @for (star of getStars(personaje.poder); track $index) {
-      <span>⭐</span>
+    @if (personaje.poder > 0) {
+      @for (star of getStars(personaje.poder); track $index) {
+        <span>⭐</span>
+      }
+    }
+    @if (personaje.poder === 0){
+      <p>No tiene poder ☠</p>
     }
   </div>
 </div>
