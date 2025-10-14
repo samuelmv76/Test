@@ -4,11 +4,13 @@ import { Matatopos } from './matatopos/matatopos/matatopos';
 import { Carrera } from './carrera/carrera';
 import { PasoParametros } from './paso-parametros/paso-parametros';
 import { ListaPersonajes } from './lista-personajes/lista-personajes';
+import { FormularioRegistro } from './formulario-registro/formulario-registro';
 
 export const routes: Routes = [
     { path: 'contador', component: Contador},
     { path: 'matatopos', component: Matatopos},
     { path: 'carrera', component: Carrera}, 
     { path: 'paso-parametros/:num', component: PasoParametros},
-    { path: 'lista-personajes', component: ListaPersonajes }
+    { path: 'lista-personajes', component: ListaPersonajes },
+    { path: 'formulario-registro', component: FormularioRegistro },
 ];
