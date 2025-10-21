@@ -4,6 +4,6 @@
 /**
  * 
  */
-module ejemploPatronDao {
+module Patron {
 	requires java.sql;
 }
