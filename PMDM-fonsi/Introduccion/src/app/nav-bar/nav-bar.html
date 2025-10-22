@@ -1,20 +1,59 @@
-<mat-toolbar color="primary">
-  <span class="example-spacer"></span>
-  <span class="opcion" routerLink="/contador">Contador</span>
-  <span class="example-spacer"></span>
-  <span  class="opcion" routerLink="/matatopos">Matatopos</span>
-  <span class="example-spacer"></span>
-  <span class="opcion" routerLink="/carrera">Carrera</span>
-  <span class="example-spacer"></span>
-  <span class="opcion" [routerLink]="['/paso-parametros', pi]">Paso Parametros</span>
-  <span class="example-spacer"></span>
-  <span class="opcion" routerLink="/lista-personajes">Lista Personajes</span>
-  <span class="example-spacer"></span>
-  <span class="opcion" routerLink="/formulario-registro">Formulario registro</span>
-  <span class="example-spacer"></span>    
-  <span class="opcion">Juego</span>
-  <span class="example-spacer"></span>    
-  <span class="opcion">Juego</span>
-  <span class="example-spacer"></span>
-  <span class="opcion">	<mat-icon>bookmark</mat-icon></span>
-</mat-toolbar>
+<!-- Converted horizontal toolbar to vertical collapsible sidebar -->
+<div class="sidebar" [class.collapsed]="isCollapsed()">
+  <div class="sidebar-header">
+    <button class="toggle-btn" (click)="toggleSidebar()" mat-icon-button>
+      <mat-icon>{{ isCollapsed() ? 'menu' : 'menu_open' }}</mat-icon>
+    </button>
+  </div>
+  
+  <nav class="sidebar-nav">
+    <a class="nav-item" routerLink="/contador" routerLinkActive="active">
+      <mat-icon>calculate</mat-icon>
+      <span class="nav-text">Contador</span>
+    </a>
+    
+    <a class="nav-item" routerLink="/matatopos" routerLinkActive="active">
+      <mat-icon>sports_esports</mat-icon>
+      <span class="nav-text">Matatopos</span>
+    </a>
+    
+    <a class="nav-item" routerLink="/carrera" routerLinkActive="active">
+      <mat-icon>directions_run</mat-icon>
+      <span class="nav-text">Carrera</span>
+    </a>
+    
+    <a class="nav-item" [routerLink]="['/paso-parametros', pi]" routerLinkActive="active">
+      <mat-icon>swap_horiz</mat-icon>
+      <span class="nav-text">Paso Parametros</span>
+    </a>
+    
+    <a class="nav-item" routerLink="/lista-personajes" routerLinkActive="active">
+      <mat-icon>people</mat-icon>
+      <span class="nav-text">Lista Personajes</span>
+    </a>
+    
+    <a class="nav-item" routerLink="/formulario-registro" routerLinkActive="active">
+      <mat-icon>app_registration</mat-icon>
+      <span class="nav-text">Formulario registro</span>
+    </a>
+
+    <a class="nav-item" routerLink="/roulette" routerLinkActive="active">
+      <mat-icon>videogame_asset</mat-icon>
+      <span class="nav-text">Ruleton</span>
+    </a>
+    
+    <a class="nav-item">
+      <mat-icon>bookmark</mat-icon>
+      <span class="nav-text">Favoritos</span>
+    </a>
+    <div class="halloween-mode-toggle">
+      <mat-slide-toggle
+        [checked]="halloweenService.halloweenMode()"
+        (change)="toggleHalloweenMode()"
+        color="primary"
+      >
+        <span>Halloween Mode</span>
+      </mat-slide-toggle>
+    </div>
+  </nav>
+</div>

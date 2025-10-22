@@ -1,0 +1,27 @@
+.halloween-mode {
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --primary-color: #ff6d00;
+  --accent-color: #ffab40;
+}
+
+.halloween-mode body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.halloween-mode .sidebar {
+  background-color: #2c2c2c;
+}
+
+.halloween-mode .nav-item:hover {
+  background-color: var(--primary-color);
+}
+.halloween-mode .contendedor-root {
+  background-image: url('/images/fondohalloween.webp');
+  background-repeat: no-repeat;     /* Evita que se repita la imagen */
+  background-size: cover;           /* Hace que cubra toda la pantalla */
+  background-position: center;      /* Centra la imagen */
+  background-attachment: fixed;     /* (Opcional) Hace que quede fija al hacer scroll */
+  min-height: 100vh;                /* Asegura que ocupe el 100% de la altura de la ventana */
+}

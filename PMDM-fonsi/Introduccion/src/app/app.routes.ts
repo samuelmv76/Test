@@ -5,11 +5,13 @@ import { Carrera } from './carrera/carrera';
 import { PasoParametros } from './paso-parametros/paso-parametros';
 import { ListaPersonajes } from './lista-personajes/lista-personajes';
 import { FormularioRegistro } from './formulario-registro/formulario-registro';
+import { RouletteComponent } from './roulette/roulette';
 
 export const routes: Routes = [
     { path: 'contador', component: Contador},
     { path: 'matatopos', component: Matatopos},
-    { path: 'carrera', component: Carrera}, 
+    { path: 'carrera', component: Carrera},
+    { path: 'roulette', component: RouletteComponent },
     { path: 'paso-parametros/:num', component: PasoParametros},
     { path: 'lista-personajes', component: ListaPersonajes },
     { path: 'formulario-registro', component: FormularioRegistro },

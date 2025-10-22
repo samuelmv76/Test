@@ -1,0 +1,33 @@
+ <div class="money-display">
+    💰 Dinero: <strong>{{ totalMoney }}$</strong>
+  </div>
+
+<div class="casino-roulette-container">
+  <div class="lights">
+    <div class="light" *ngFor="let l of lights"></div>
+  </div>
+
+  <div class="roulette-wheel" [style.transform]="rotation">
+    <div
+      class="roulette-segment"
+      *ngFor="let segment of segments; let i = index"
+      [style.transform]="'rotate(' + i * (360 / segments.length) + 'deg)'"
+      [style.background]="segment.color"
+    >
+      <span>{{ segment.label }}</span>
+    </div>
+  </div>
+
+  <div class="roulette-pointer">▼</div>
+
+  <button (click)="spin()" [disabled]="isSpinning || totalMoney < spinCost">
+    {{ isSpinning ? 'Girando...' : '🎲 Girar por ' + spinCost + '$' }}
+  </button>
+
+  <div *ngIf="winner" class="result">
+    🎉 Resultado: <strong>{{ winner.label }}</strong>!
+  </div>
+
+  <audio #spinSound src="assets/sounds/spin.mp3"></audio>
+  <audio #winSound src="assets/sounds/win.mp3"></audio>
+</div>

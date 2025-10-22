@@ -1,35 +1,159 @@
-.num{
-    font-size: 50px;
+/* Modern card-based design with glassmorphism */
+.num {
+  font-size: 72px;
+  font-weight: 700;
+  color: black;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin: 24px 0;
+  letter-spacing: 2px;
+  text-align: center;
 }
 
-.contendor{
-    width: 100px;
-    height: 300px;
-    background-color: antiquewhite;
-    border: solid 2px black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.contendor {
+  width: 140px;
+  height: 360px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  gap: 12px;
 }
 
-.circulo{
-    width: 75px;
-    height: 75px;
-    margin: 15px;
-    border-radius: 50%;
-    border: solid 2px black;
+.circulo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 2px 8px rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.verde{
-    background-color: green;
+.circulo::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
 }
-.rojo{
-    background-color: red;
+
+.verde {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  animation: glow-green 2s ease-in-out infinite;
 }
-.naranja{
-    background-color: orange;
+
+.rojo {
+  background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+  animation: glow-red 2s ease-in-out infinite;
 }
-.gris{
-    background-color: grey;
+
+.naranja {
+  background: linear-gradient(135deg, #f2994a 0%, #f2c94c 100%);
+  animation: glow-orange 2s ease-in-out infinite;
+}
+
+.gris {
+  background: linear-gradient(135deg, #bdc3c7 0%, #95a5a6 100%);
+}
+
+@keyframes glow-green {
+  0%,
+  100% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 0 20px
+      rgba(56, 239, 125, 0.5);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 0 40px
+      rgba(56, 239, 125, 0.8);
+  }
+}
+
+@keyframes glow-red {
+  0%,
+  100% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 0 20px rgba(244, 92, 67, 0.5);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 0 40px rgba(244, 92, 67, 0.8);
+  }
+}
+
+@keyframes glow-orange {
+  0%,
+  100% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 0 20px
+      rgba(242, 201, 76, 0.5);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 2px 8px rgba(255, 255, 255, 0.2), 0 0 40px
+      rgba(242, 201, 76, 0.8);
+  }
+}
+
+/* Modern button styling */
+button {
+  padding: 12px 32px;
+  margin: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: black;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+}
+.botones {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+:host-context(.halloween-mode) .num {
+  color: var(--text-color);
+}
+
+:host-context(.halloween-mode) .contendor {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 109, 0, 0.5);
+}
+
+:host-context(.halloween-mode) button {
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-color);
+  border-color: rgba(255, 109, 0, 0.5);
+}
+
+:host-context(.halloween-mode) button:hover {
+  background: var(--primary-color);
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 24px rgba(255, 109, 0, 0.4);
 }

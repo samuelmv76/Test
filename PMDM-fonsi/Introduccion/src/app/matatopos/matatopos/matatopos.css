@@ -55,6 +55,29 @@
     font-size: 60px;
 }
 
+:host-context(.halloween-mode) .tablero {
+  background-color: #2c2c2c;
+  border-color: var(--primary-color);
+}
+
+:host-context(.halloween-mode) .casilla {
+  border-color: var(--primary-color);
+}
+
+:host-context(.halloween-mode) .topo {
+  background-color: #ff6d00;
+  border-color: #ffab40;
+}
+
+:host-context(.halloween-mode) .topo:hover {
+  background-color: #ffab40;
+}
+
+:host-context(.halloween-mode) .contador-puntos {
+  background-color: #121212;
+  color: var(--text-color);
+}
+
 @keyframes salirTopo{
     0%,100%{
         width: 80px;

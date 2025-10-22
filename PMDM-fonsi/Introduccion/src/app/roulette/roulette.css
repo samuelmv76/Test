@@ -1,0 +1,186 @@
+.casino-roulette-container {
+  position: relative;
+  width: 340px;
+  height: 420px;
+  margin: 50px auto;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 💰 Contador de dinero */
+.money-display {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00ff88;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #00ff88;
+  z-index: 10;
+}
+
+.roulette-wheel {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 8px solid gold;
+  position: relative;
+  overflow: hidden;
+  transition: transform 4s cubic-bezier(0.05, 0.85, 0.1, 1);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), inset 0 0 10px #000;
+  background: radial-gradient(circle at center, #111 0%, #000 70%);
+  z-index: 1;
+}
+
+.roulette-segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0% 0%;
+  text-align: right;
+  padding-right: 10px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 0 0 3px #000;
+}
+
+.roulette-segment span {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  transform: rotate(90deg);
+}
+
+.roulette-pointer {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  color: #ff0000;
+  text-shadow: 0 0 5px #000;
+  z-index: 2;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: translateX(-50%) scale(1);
+  }
+  to {
+    transform: translateX(-50%) scale(1.2);
+  }
+}
+
+button {
+  margin-top: 30px;
+  padding: 12px 25px;
+  border: none;
+  background: linear-gradient(90deg, #ff5e00, #ffbb00);
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+}
+
+button:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.9);
+}
+
+.result {
+  margin-top: 25px;
+  font-size: 20px;
+  color: #00ff91;
+  font-weight: 700;
+  text-shadow: 0 0 6px #000;
+}
+
+/* Luces decorativas */
+.lights {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.light {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: red;
+  margin: 4px;
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  0% {
+    background: #ffea00;
+    box-shadow: 0 0 10px #ffea00;
+  }
+  100% {
+    background: #ff0000;
+    box-shadow: 0 0 10px #ff0000;
+  }
+}
+
+:host-context(.halloween-mode) .money-display {
+  color: var(--primary-color);
+  box-shadow: 0 0 15px var(--primary-color);
+}
+
+:host-context(.halloween-mode) .roulette-wheel {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 25px rgba(255, 109, 0, 0.8), inset 0 0 10px #000;
+}
+
+:host-context(.halloween-mode) .roulette-pointer {
+  color: var(--accent-color);
+}
+
+:host-context(.halloween-mode) button {
+  background: linear-gradient(90deg, #ff6d00, #ffab40);
+  box-shadow: 0 0 10px rgba(255, 109, 0, 0.5);
+}
+
+:host-context(.halloween-mode) button:hover:not(:disabled) {
+  box-shadow: 0 0 20px rgba(255, 109, 0, 0.9);
+}
+
+:host-context(.halloween-mode) .result {
+  color: var(--accent-color);
+}
+
+:host-context(.halloween-mode) .light {
+  animation: halloween-blink 1s infinite alternate;
+}
+
+@keyframes halloween-blink {
+  0% {
+    background: #ff6d00;
+    box-shadow: 0 0 10px #ff6d00;
+  }
+  100% {
+    background: #9b59b6;
+    box-shadow: 0 0 10px #9b59b6;
+  }
+}
+
+

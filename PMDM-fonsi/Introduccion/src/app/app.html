@@ -1,5 +1,8 @@
-<app-nav-bar></app-nav-bar>
-
-<div class="contendedor-root">
-<router-outlet></router-outlet>
+<div [class.halloween-mode]="halloweenService.halloweenMode()" class="app-container">
+  <!-- Added collapsible sidebar navigation -->
+  <app-nav-bar></app-nav-bar>
+  
+  <div class="contendedor-root">
+    <router-outlet></router-outlet>
+  </div>
 </div>
