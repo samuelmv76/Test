@@ -1,0 +1,52 @@
+package Carrera;
+/*
+Crear una clase Semaphore metodos: acquire(), release()
+ 
+El ejercicio consiste en crear 3 tortugas que serán Hilos, 
+las cuales tiene que avanzar 20 metros, 
+a los 5 metros se encuentran por un tunel en
+el que solo puede pasar una cada vez, 
+y la siguiente en entrar tiene que esperar a que salga la siguiente para entrar.
+*/
+
+public class Semaphore extends Thread {
+	
+	private int metros=0;//se empieza a cero la carrera y cada tortuga se le suman los metros
+	
+	public Semaphore(int metros) {
+		super();
+		this.setMetros(metros);
+	}
+
+	public Semaphore() {
+		
+	}
+	
+	public int getMetros() {
+		return metros;
+	}
+	
+	public void setMetros(int metros) {
+		this.metros = metros;
+	}
+
+	@Override
+	public void run() {
+		
+		for (int i = 0; i < 20; i++) {
+			
+			this.metros++;
+			
+	        try {
+	        	System.out.println("Metros recorridos"+this.metros);
+	            Thread.sleep(500);
+	        } catch (InterruptedException e) {
+	            System.err.println("El hilo fue interrumpido.");
+	            Thread.currentThread().interrupt();
+	        }
+		}
+		
+	}
+
+	
+}
