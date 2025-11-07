@@ -12,7 +12,9 @@ public class Tortuga extends Thread{
 	
 	private int metros=0;
     
-	Semaphore semaforo = new Semaphore();
+	private final Semaphore semaphore /*= new Semaphore()*/;
+	
+	
 	
 	public int getMetros() {
 		return metros;
@@ -21,6 +23,7 @@ public class Tortuga extends Thread{
 		this.metros = metros;
 	}
 
+	
 	@Override
 	public void run() {
 		
@@ -30,6 +33,7 @@ public class Tortuga extends Thread{
 			
 	        try {
 	        	if(this.metros == 5) {
+	        		//esperar cada hilo
 	        		
 	        	}
 	        	
@@ -41,6 +45,6 @@ public class Tortuga extends Thread{
 	        }
 		}
 		
-	}
-	
+	}//fin run
+
 }
