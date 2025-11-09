@@ -1,50 +1,42 @@
 package Carrera;
-/*
-Crear una clase Semaphore metodos: acquire(), release()
- 
-El ejercicio consiste en crear 3 tortugas que serán Hilos, 
-las cuales tiene que avanzar 20 metros, 
-a los 5 metros se encuentran por un tunel en
-el que solo puede pasar una cada vez, 
-y la siguiente en entrar tiene que esperar a que salga la siguiente para entrar.
-*/
-public class Tortuga extends Thread{
-	
-	private int metros=0;
-    
-	private final Semaphore semaphore /*= new Semaphore()*/;
-	
-	
-	
-	public int getMetros() {
-		return metros;
-	}
-	public void setMetros(int metros) {
-		this.metros = metros;
-	}
+import java.util.concurrent.Semaphore;
 
-	
+class Tortuga implements Runnable {
+	private String nombre;
+	private Semaphore tunel;//
+
+	public Tortuga(String nombre, Semaphore tunel) {
+		this.nombre = nombre;
+		this.tunel = tunel;
+	}
 	@Override
 	public void run() {
-		
-		for (int i = 0; i < 20; i++) {
-			
-			this.metros++;
-			
-	        try {
-	        	if(this.metros == 5) {
-	        		//esperar cada hilo
-	        		
-	        	}
-	        	
-	        	System.out.println("Metros recorridos"+this.metros);
-	            Thread.sleep(500);
-	        } catch (InterruptedException e) {
-	            System.err.println("El hilo fue interrumpido.");
-	            Thread.currentThread().interrupt();
-	        }
-		}
-		
-	}//fin run
+		try {
+			// avanza hacia el tunel
+			for (int i = 1; i <= 20; i++) {
+				System.out.println(nombre + " avanza " + i + " m");
+				Thread.sleep(1000); // 1 m por segundo
+			}
 
+			System.out.println(nombre + " ha llegado al túnel y espera su turno...");
+
+			//espera a que el tunel este libre
+			tunel.acquire();
+			System.out.println(nombre + " entra al túnel");
+
+			//recorre el tunel (10 m)
+			for (int i = 1; i <= 10; i++) {
+				System.out.println(nombre + " dentro del túnel: " + i + " m");
+				Thread.sleep(1000);
+			}
+
+			System.out.println(nombre + " ha salido del túnel 🏁");
+
+			//libera el tunel
+			tunel.release();
+
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }
