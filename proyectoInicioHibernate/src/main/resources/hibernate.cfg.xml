@@ -4,14 +4,13 @@
 <hibernate-configuration>
 <session-factory>
 <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-<property name="connection.url">jdbc:mysql://localhost/instituto</property>
+<property name="connection.url">jdbc:mysql://localhost:3307/instituto</property>
 <property name="connection.username">root</property>
 <property name="connection.password">root</property>
 <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 <property name="hibernate.show_sql">true</property>
 
-<mapping resource="ejemplo01/Profesor.hbm.xml"/>
-<mapping class="ejemplo01.Profesor"/>
+<mapping class="proyectoInicioHibernate.entidades.Profesor"/>
 
 </session-factory>
 </hibernate-configuration>
