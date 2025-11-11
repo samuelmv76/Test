@@ -46,7 +46,8 @@ public class Tortuga extends Animal implements Runnable{
 
 	@Override
 	public void run() {
-			
+		//acquire
+		//relase
 	}
 	
 	
