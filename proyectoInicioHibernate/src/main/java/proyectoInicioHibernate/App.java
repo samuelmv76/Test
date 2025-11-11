@@ -19,7 +19,19 @@ public class App {
 		
 		Profesor p1 = new Profesor("08","Sergio","Aviles");
 		
-		sesion.persist(p1);
+		//sesion.persist(p1); esto inserta p1 en la base de datos
+		
+		// esto modifica la ciudad de p2
+			Profesor p2 = sesion.get(Profesor.class, "08");
+			System.out.println(p2);
+			
+			p2.setCiudad("Salinas");
+			sesion.merge(p2);
+			p2 = sesion.get(Profesor.class, "08");
+			System.out.println(p2);
+		//
+			
+		sesion.delete(p2);//esto borra la tabla de p2
 		
 		tx.commit();
 		sesion.close();

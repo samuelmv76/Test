@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Profesor {
 	
 	@Id
-	@Column(name="code_profesor")
+	@Column(name="cod_profesor")
 	private String cod_profesor;
 	@Column(name="nombre_profesor")
 	private String nombre_profesor;
@@ -47,6 +47,11 @@ public class Profesor {
 		this.cod_profesor = cod_profesor;
 		this.nombre_profesor = nombre_profesor;
 		this.ciudad = ciudad;
+	}
+	@Override
+	public String toString() {
+		return "Profesor [cod_profesor=" + cod_profesor + ", nombre_profesor=" + nombre_profesor + ", ciudad=" + ciudad
+				+ "]";
 	}
 	
 }
