@@ -2,7 +2,7 @@ package Carrera;
 
 import java.util.concurrent.Semaphore;
 
-import Animales.Tortuga;
+import Animales.*;
 
 public class main {
 
@@ -11,12 +11,13 @@ public class main {
         Semaphore tunel = new Semaphore(1);
 
         Thread mbappe = new Thread(new Tortuga("Mbappe", tunel));
-        //Thread t2 = new Thread(new Tortuga("Tortuga 2", tunel));
-        //Thread t3 = new Thread(new Tortuga("Tortuga 3", tunel));
+        Thread balde = new Thread(new Liebre("Balde", tunel));
+        Thread federico = new Thread(new Pajaro("Federico", tunel));
 
         mbappe.start();
-        //t2.start();
-        //t3.start();
+        balde.start();
+        federico.start();
+        
         
 	}
 
