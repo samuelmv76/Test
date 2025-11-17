@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+//http://localhost:8082/api/empleado/info_empleado
 @SpringBootApplication
-public class PruebaSpringApplication implements CommandLineRunner{
+public class PruebaSpringApplication /*implements CommandLineRunner*/{
 
 	@Autowired
 	EmpleadoServiceImpl empleadoService;
@@ -17,7 +17,7 @@ public class PruebaSpringApplication implements CommandLineRunner{
 		SpringApplication.run(PruebaSpringApplication.class, args);
 	}
 	
-	@Override
+	/*@Override
 	public void run(String... arg0) {
 		System.out.println("Hola mundo");
 		
@@ -26,5 +26,5 @@ public class PruebaSpringApplication implements CommandLineRunner{
 		empleadoService.insert(e);
 		
 	}
-
+*/
 }
