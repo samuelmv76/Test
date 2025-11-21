@@ -68,10 +68,6 @@ public class Tortuga extends Animal implements Runnable{
 		//acquire
 		//relase
 		
-		/*
-			el charco cada 10m ,el charco son 10m que avanza +3m/s getVelocidad()+3
-			
-		*/
 		
 		try {
 			//avanza hacia el tunel  50 m
@@ -82,10 +78,10 @@ public class Tortuga extends Animal implements Runnable{
 				Thread.sleep(1000);//2m/s por segundo
 			}
 			*/
-			for (int i = getPosicion(); i <= 50; i++) {
-				System.out.println(getNombre() +" avanza "+ i*getVelocidad() + " m");
+			for (int p = getPosicion(); p <= 50/getVelocidad(); p++) {
+				System.out.println(getNombre() +" avanza "+ p*getVelocidad() + " m");
 				Thread.sleep(1000);//2m/s por segundo
-				setPosicion(i);
+				setPosicion(p);
 			}
 
 			System.out.println(getNombre() + " ha llegado al túnel y espera su turno...");
@@ -96,13 +92,15 @@ public class Tortuga extends Animal implements Runnable{
 			System.out.println(getNombre() + " entra al túnel");
 
 			//recorre el tunel (50 a 150 m)
-			for (int i = getPosicion(); i <= 150; i++) {
+			for (int p = getPosicion(); p <= 150/getVelocidad(); p++) {
 				
-				System.out.println(getNombre() + " dentro del túnel: " + i*getVelocidad() + " m");
+				System.out.println(getNombre() + " dentro del túnel: " + p*getVelocidad() + " m");
 				
-				if(i%10==0) {
+				if(p%10==0) {
 					//que si la i es divisible por 10 la velocidad sea 5 es decir getVelocidad()+3 solo 1 segundo
-					
+					System.out.println("Charca");
+					p += 3;
+					System.out.println("Posicion despues de la charca: "+p);
 				}
 				
 				Thread.sleep(1000);
