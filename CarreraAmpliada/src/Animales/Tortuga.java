@@ -98,7 +98,7 @@ public class Tortuga extends Animal implements Runnable{
 				
 				System.out.println(getNombre() + " dentro del túnel: " + p + " m");
 				
-				if(p%10==0 || p!=0) {
+				if(p%10==0 && p!=0) {
 					//que si la i es divisible por 10 la velocidad sea 5 es decir getVelocidad()+3 solo 1 segundo
 					System.out.println("Charca");
 					p += 3;
