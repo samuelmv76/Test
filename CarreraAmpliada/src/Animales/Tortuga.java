@@ -110,6 +110,13 @@ public class Tortuga extends Animal implements Runnable{
 
 			System.out.println(getNombre() + " ha salido del túnel");
 
+			//for para llegar al final de la carrera 300m
+			for (int p = getPosicion(); p <= 300;p++) {
+				System.out.println(getNombre() +" avanza "+ p + " m");
+				
+				Thread.sleep(1000/getVelocidad());// cada 0,5s +1 de posicion es igual cada 1s +2
+			}
+			
 			//libera el tunel
 			tunel.release();
 
