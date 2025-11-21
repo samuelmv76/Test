@@ -5,8 +5,8 @@ import java.util.concurrent.Semaphore;
 //clase padre
 public class Animal{
 	
-	private String nombre;
-	private int posicion;
+	private String nombre = "Tortuga";
+	private int posicion;//siempre 0 al empezar
 	private int velocidad;
 	protected Semaphore tunel;
 	
@@ -14,7 +14,7 @@ public class Animal{
 	public Animal(String nombre, int posicion, int velocidad, Semaphore tunel) {
 		super();
 		this.nombre = nombre;
-		this.posicion = posicion;
+		this.posicion = 0;
 		this.velocidad = velocidad;
 		this.tunel = tunel;
 	}

@@ -6,7 +6,14 @@ public class Tortuga extends Animal implements Runnable{
 
 	public Tortuga(String string, Semaphore tunel) {
 		// TODO Auto-generated constructor stub
+		
 	}
+	
+
+	public Tortuga(String nombre, int posicion, int velocidad, Semaphore tunel) {
+		super(nombre, posicion, velocidad, tunel);
+	}
+
 
 	@Override
 	public Semaphore getTunel() {
@@ -61,26 +68,47 @@ public class Tortuga extends Animal implements Runnable{
 		//acquire
 		//relase
 		
+		/*
+			el charco cada 10m ,el charco son 10m que avanza +3m/s getVelocidad()+3
+			
+		*/
+		
 		try {
-			//avanza hacia el tunel
-			for (int i = 1; i <= 50; i++) {
-				System.out.println(getNombre() + " avanza " + i + " m");
-				Thread.sleep(500);//2m/s por segundo
+			//avanza hacia el tunel  50 m
+			//int i = getPosicion();//0
+			/*
+			for (i = 1; i <= 50/getVelocidad(); i++) {
+				System.out.println(getNombre() + " avanza " + i*getVelocidad() + " m");
+				Thread.sleep(1000);//2m/s por segundo
+			}
+			*/
+			for (int i = getPosicion(); i <= 50; i++) {
+				System.out.println(getNombre() +" avanza "+ i*getVelocidad() + " m");
+				Thread.sleep(1000);//2m/s por segundo
+				setPosicion(i);
 			}
 
 			System.out.println(getNombre() + " ha llegado al túnel y espera su turno...");
 
 			//espera a que el tunel este libre
-			tunel.acquire();
+			tunel.acquire();//error
+
 			System.out.println(getNombre() + " entra al túnel");
 
-			//recorre el tunel (10 m)
-			for (int i = 1; i <= 10; i++) {
-				System.out.println(getNombre() + " dentro del túnel: " + i + " m");
+			//recorre el tunel (50 a 150 m)
+			for (int i = getPosicion(); i <= 150; i++) {
+				
+				System.out.println(getNombre() + " dentro del túnel: " + i*getVelocidad() + " m");
+				
+				if(i%10==0) {
+					//que si la i es divisible por 10 la velocidad sea 5 es decir getVelocidad()+3 solo 1 segundo
+					
+				}
+				
 				Thread.sleep(1000);
 			}
 
-			System.out.println(getNombre() + " ha salido del túnel 🏁");
+			System.out.println(getNombre() + " ha salido del túnel");
 
 			//libera el tunel
 			tunel.release();
