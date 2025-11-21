@@ -10,13 +10,13 @@ public class main {
         //creamos un semaforo con 1 permiso solo 1 tortuga puede estar en el tunel
         Semaphore tunel = new Semaphore(1);
 
-        Tortuga mbappexd = new Tortuga("mbappe",0,2,tunel);
+        Tortuga mbappe = new Tortuga("mbappe",0,2,tunel);
         
-        Thread mbappe = new Thread(mbappexd);
+        Thread mbappeThread = new Thread(mbappe);
         Thread balde = new Thread(new Liebre("Balde", tunel));
         Thread federico = new Thread(new Pajaro("Federico", tunel));
 
-        mbappe.start();
+        mbappeThread.start();
         balde.start();
         federico.start();
         
