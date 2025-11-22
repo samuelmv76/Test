@@ -59,32 +59,39 @@ public class Liebre extends Animal implements Runnable{
 			
 			//avanza hacia el tunel  50 m
 			while ( getPosicion() < 50 ) {
-				viento.generarViento();//boolean t f
 				
-				if( getPosicion()%10==0 ) {//logica charco
+				viento.generarViento();//boolean t f
+				//viento.sleep();//espera 10s, esto no funciona
+
+				
+				if( getPosicion()%10==0 && getPosicion()!=0 ) {//logica charco
 					System.out.println(getNombre()+" piso un charco y se resbala");
 					
 					System.out.println(getNombre() + " No avanza por el charco, POSICION: " + posicionaux + " m");
 					System.out.println("--------");
 					
 					Thread.sleep(5000);//pierde 5s por el charco
+					
+					
+					posicionaux+=getVelocidad();//5
+					setPosicion(posicionaux);
 				
 				} else {//logica para lo de dormir
 					c++;
 					if(c==4) {
 						//duerme 10s y contador=0
 						
-					
+						
 						if(viento.isV()==true) {
 							
 						}
 						
 						c=0;
 					} else {
+						
+						System.out.println(getNombre() + " avanza: " + posicionaux + " m");
 						posicionaux+=getVelocidad();//5
 						setPosicion(posicionaux);
-						System.out.println(getNombre() + " avanza: " + posicionaux + " m");
-
 						Thread.sleep(1000);
 					}
 
