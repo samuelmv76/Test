@@ -1,6 +1,7 @@
 package Animales;
 
 import Carrera.Tunel;
+import Carrera.Viento;
 
 public class Tortuga extends Animal {
 
@@ -45,8 +46,8 @@ public class Tortuga extends Animal {
 		super.setVelocidad(velocidad);
 	}
 
-    public Tortuga(String nombre,int posicion,int velocidad_base,Tunel tunel) {
-        super(nombre, posicion,velocidad_base, tunel);
+    public Tortuga(String nombre,int posicion,int velocidad_base,Tunel tunel,Viento viento) {
+        super(nombre, posicion,velocidad_base, tunel, viento);
     }
     
 
@@ -59,12 +60,29 @@ public class Tortuga extends Animal {
 		try {
 			//avanza hacia el tunel  50 m
 			while ( getPosicion() < 50 ) {
-				posicionaux++;
-				setPosicion(posicionaux);
-				System.out.println(getNombre() +" avanza "+ posicionaux + " m");
 				
+				if( getPosicion()%10==0 ) {
+					System.out.println(getNombre()+" piso un charco y corrio mas durante un segundo");
+					
+					
+					posicionaux+=5;//por el charco
+					setPosicion(posicionaux);
+					System.out.println(getNombre() + " avanza: " + posicionaux + " m");
+					System.out.println("--------");
+
+					
+					
+					Thread.sleep(1000);
 				
-				Thread.sleep(1000/getVelocidad());// cada 0,5s +1 de posicion es igual cada 1s +2
+				} else {
+					posicionaux++;
+					setPosicion(posicionaux);
+					System.out.println(getNombre() + " avanza: " + posicionaux + " m");
+
+					
+					
+					Thread.sleep(1000/getVelocidad());
+				}
 				
 			}
 			
@@ -80,12 +98,29 @@ public class Tortuga extends Animal {
 			//recorre el tunel (50 a 150 m)
 			while ( getPosicion() < 150) {
 				
-				posicionaux++;
-				setPosicion(posicionaux);
-				System.out.println(getNombre() + " dentro del túnel: " + posicionaux + " m");
+				if( getPosicion()%10==0 ) {
+					System.out.println(getNombre()+" piso un charco y corrio mas durante un segundo");
+					
+					
+					posicionaux+=5;//por el charco
+					setPosicion(posicionaux);
+					System.out.println(getNombre() + " dentro del túnel: " + posicionaux + " m");
+					System.out.println("--------");
 
+					
+					
+					Thread.sleep(1000);
 				
-				Thread.sleep(1000/getVelocidad());
+				} else {
+					posicionaux++;
+					setPosicion(posicionaux);
+					System.out.println(getNombre() + " dentro del túnel: " + posicionaux + " m");
+
+					
+					
+					Thread.sleep(1000/getVelocidad());
+				}
+
 			}
 
 			tunel.salir(getNombre());
@@ -93,11 +128,29 @@ public class Tortuga extends Animal {
 			//while para llegar al final de la carrera 300m
 			while ( getPosicion() < 300 ) {
 				
-				posicionaux++;
-				setPosicion(posicionaux);
-				System.out.println(getNombre() +" avanza "+ posicionaux + " m");
+				if( getPosicion()%10==0 ) {
+					System.out.println(getNombre()+" piso un charco y corrio mas durante un segundo");
+					
+					
+					posicionaux+=5;//por el charco
+					setPosicion(posicionaux);
+					System.out.println(getNombre() + " avanza: " + posicionaux + " m");
+					System.out.println("--------");
+
+					
+					
+					Thread.sleep(1000);
 				
-				Thread.sleep(1000/getVelocidad());// cada 0,5s +1 de posicion es igual cada 1s +2
+				} else {
+					posicionaux++;
+					setPosicion(posicionaux);
+					System.out.println(getNombre() + " avanza: " + posicionaux + " m");
+
+					
+					
+					Thread.sleep(1000/getVelocidad());
+				}
+				
 			}
 			System.out.println("Carrear terminada para: "+getNombre() );
 			
@@ -107,5 +160,10 @@ public class Tortuga extends Animal {
 		}
 		
 		
-	}
+	}//fin run
+
+
+	
+	
+
 }
