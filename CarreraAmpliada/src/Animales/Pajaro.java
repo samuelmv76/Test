@@ -2,22 +2,12 @@ package Animales;
 
 import java.util.concurrent.Semaphore;
 
+import Carrera.Tunel;
+
 public class Pajaro extends Animal implements Runnable{
 
-	public Pajaro(String string, Semaphore tunel) {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public Semaphore getTunel() {
-		// TODO Auto-generated method stub
-		return super.getTunel();
-	}
-
-	@Override
-	public void setTunel(Semaphore tunel) {
-		// TODO Auto-generated method stub
-		super.setTunel(tunel);
+	public Pajaro(String nombre, int posicion, int velocidad, Tunel tunel) {
+		super(nombre, posicion, velocidad, tunel);
 	}
 
 	@Override

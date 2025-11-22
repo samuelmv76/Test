@@ -1,30 +1,23 @@
 package Animales;
 
-import java.util.concurrent.Semaphore;
-
+import Carrera.Tunel;
 //clase padre
-public class Animal{
+public class Animal implements Runnable{
 	
-	private String nombre = "Tortuga";
+	private String nombre;
 	private int posicion;//siempre 0 al empezar
 	private int velocidad;
-	protected Semaphore tunel;
+	protected Tunel tunel;
 	
 	
-	public Animal(String nombre, int posicion, int velocidad, Semaphore tunel) {
+	public Animal(String nombre, int posicion, int velocidad, Tunel tunel) {
 		super();
 		this.nombre = nombre;
 		this.posicion = 0;
 		this.velocidad = velocidad;
 		this.tunel = tunel;
 	}
-	
-	public Semaphore getTunel() {
-		return tunel;
-	}
-	public void setTunel(Semaphore tunel) {
-		this.tunel = tunel;
-	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -48,6 +41,12 @@ public class Animal{
 	public Animal() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
