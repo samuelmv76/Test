@@ -59,6 +59,7 @@ public class Liebre extends Animal implements Runnable{
 			
 			//avanza hacia el tunel  50 m
 			while ( getPosicion() < 50 ) {
+				viento.generarViento();//boolean t f
 				
 				if( getPosicion()%10==0 ) {//logica charco
 					System.out.println(getNombre()+" piso un charco y se resbala");
@@ -73,7 +74,10 @@ public class Liebre extends Animal implements Runnable{
 					if(c==4) {
 						//duerme 10s y contador=0
 						
-						viento.rachaViento();
+					
+						if(viento.isV()==true) {
+							
+						}
 						
 						c=0;
 					} else {
@@ -87,7 +91,7 @@ public class Liebre extends Animal implements Runnable{
 				}
 				
 			}
-			
+			////////
 
 			System.out.println(getNombre() + " ha llegado al túnel y espera su turno...");
 

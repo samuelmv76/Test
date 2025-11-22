@@ -11,6 +11,7 @@ public class main {
 		Tunel tunel = new Tunel();
 		Viento viento = new Viento();
 		
+		
         Tortuga mbappe = new Tortuga("mbappe",0,2,tunel, viento);
         Liebre balde = new Liebre("balde",0,5,tunel, viento);
         
