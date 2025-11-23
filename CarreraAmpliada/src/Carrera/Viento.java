@@ -1,48 +1,37 @@
 package Carrera;
 
-import java.util.Random;
+public class Viento extends Thread {
 
-public class Viento {
-	
-	public boolean v = false;
-	// IMPORTANTE HACER QUE LA RACHA DE VIENTO SEA CADA x SEGUNDOS
-	
-	// hacer que se despierte la liebre
-	
-	public boolean isV() {
-		return v;
-	}
+    private static volatile boolean hayViento = false;
+    //volatile se pone para que la variable se pueda usar bien entre hilos, para que sea inmediato los cambios
+    private Thread liebreThread;
 
-	public void setV(boolean v) {
-		this.v = v;
-	}
+    public void registrarLiebre(Thread t) {
+        this.liebreThread = t;
+    }
 
-	public synchronized boolean generarViento() throws InterruptedException {
-		
-		
-		//funcion para crear el viento con un random, despues hacer que el viento retorne si hay viento o no
-		Random rand = new Random(1);
-		int r =rand.nextInt(4)+1;//numero del uno al 4
-		
-		//1 es igual a que hay viento 
+    @Override
+    public void run() {
+        while (true) {
 
-		if (r==1) {
-			setV(true);
-		} else {
-			setV(false);
-		}
-		//wait();//de 10s
-		
-		return v;
-	}
+            hayViento = Math.random() < 0.25;//esto genera un boolean si es menor de 0.25 true al reves false
 
-	public void sleep() {
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+            System.out.println("Viento = " + hayViento);
 
+           //si hay viento se despierta a la liebre
+            if (hayViento && liebreThread != null) {
+                liebreThread.interrupt();
+            }
+
+            try {
+                Thread.sleep(10000); //viento aleatorio cada 10s
+            } catch (InterruptedException e) {
+            	
+            }
+        }
+    }
+
+    public static boolean hayViento() {
+        return hayViento;
+    }
 }
