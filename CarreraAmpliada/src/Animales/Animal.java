@@ -2,8 +2,7 @@ package Animales;
 
 import Carrera.Tunel;
 import Carrera.Viento;
-//clase padre
-public class Animal implements Runnable{
+public class Animal extends Thread{
 	
 	private String nombre;
 	private int posicion;//siempre 0 al empezar lo pongo desde el main
@@ -11,15 +10,16 @@ public class Animal implements Runnable{
 	protected Tunel tunel;
 	protected Viento viento;
 	
+    protected static volatile boolean carreraTerminada = false;
+    protected static volatile String ganador = null;
 	
-	public Animal(String nombre, int posicion, int velocidad, Tunel tunel,Viento viento) {
-		super();
-		this.nombre = nombre;
-		this.posicion = posicion;
-		this.velocidad = velocidad;
-		this.tunel = tunel;
-		this.viento = viento;
-	}
+    public Animal(String nombre, int velocidad, Tunel tunel, Viento viento) {
+        this.nombre = nombre;
+        this.posicion = 0; //posicion inicial siempre 0
+        this.velocidad = velocidad;
+        this.tunel = tunel;
+    }
+
 
 	public String getNombre() {
 		return nombre;
@@ -52,7 +52,13 @@ public class Animal implements Runnable{
 		
 	}
 	
-	
+    protected void comprobarGanador() {
+        if (posicion >= 300 && !carreraTerminada) {
+            carreraTerminada = true;
+            ganador = nombre;
+            System.out.println("GANADOR: " + ganador);
+        }
+    }
 	
 	
 }

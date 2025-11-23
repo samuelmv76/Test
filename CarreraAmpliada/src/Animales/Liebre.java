@@ -1,149 +1,85 @@
 package Animales;
 
-import Carrera.Tunel;
-import Carrera.Viento;
+import java.util.Random;
+import Carrera.*;
 
-public class Liebre extends Animal implements Runnable {
+public class Liebre extends Animal { 
 
-    private Viento viento;
+    private Random rand = new Random();
+    
 
-    public Liebre(String nombre, int posicion, int velocidad, Tunel tunel, Viento viento) {
-        super(nombre, posicion, velocidad, tunel, viento);
-        this.viento = viento;
+    public Liebre(String nombre, int velocidadBase, Tunel tunel, Viento viento) {
+        super(nombre, velocidadBase, tunel, viento); 
     }
 
-    @Override
-    public void run() {
-        int posicionaux = getPosicion();
-        int contadorDormir = 0;
-        //primeros 50m antes del tunel
-        while (posicionaux < 50) {
 
-            if (contadorDormir == 4) {
-                System.out.println(getNombre() + " durmiendo 5s...");
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    System.out.println("¡" + getNombre() + " DESPERTADA por el viento!");
-                }
-                contadorDormir = 0;
-            }
+
+	@Override
+    public void run() {
+
+		while (getPosicion() < Carrera.META && !Carrera.carreraTerminada) {
+            
+            int avance = getVelocidad(); 
 
             //viento
             if (Viento.hayViento()) {
+                avance /= 2;
                 System.out.println(getNombre() + " avanza con dificultad por viento");
-            } else {
-                System.out.println(getNombre() + " avanza normal");
             }
 
-            //charcos
-            if (posicionaux % 10 == 0 && posicionaux != 0) {
+            //charco
+            if (rand.nextDouble() < 0.1) {
                 System.out.println(getNombre() + " piso un charco y se resbala!");
-                try {
-                    Thread.sleep(5000); //pierde 5s
-                } catch (InterruptedException e) {
-                    System.out.println("¡" + getNombre() + " DESPERTADA por el viento!");
+                avance = 0;
+            }
+
+            //tunel 50 a 150m
+            if (getPosicion() >= 50 && getPosicion() < 150) {
+                
+                tunel.entrar(getNombre());
+
+                while (getPosicion() < 150 && !Carrera.carreraTerminada) {
+                    
+                    int avanceTunel = getVelocidad() > 0 ? getVelocidad() : 1; 
+                    
+                    int nuevaPosicion = getPosicion() + avanceTunel;
+                    setPosicion(nuevaPosicion); 
+
+                    System.out.println(getNombre() + " DENTRO DEL TÚNEL: " + getPosicion() + " m");
+                    try { Thread.sleep(500); } catch (InterruptedException e) {}
                 }
-                posicionaux += getVelocidad();
+                
+                if (Carrera.carreraTerminada && getPosicion() < 150) {
+                    setPosicion(150);
+                    System.out.println(getNombre() + " FORZADO a salir del túnel a 150m por fin de carrera.");
+                }
+
+                tunel.salir(getNombre());
             } else {
-                posicionaux += getVelocidad();
+                // fuera del tunel
+                int nuevaPosicion = getPosicion() + avance;
+                setPosicion(nuevaPosicion);
             }
 
-            setPosicion(posicionaux);
-            System.out.println(getNombre() + " avanza a " + posicionaux + " m.");
+            System.out.println(getNombre() + " avanza: " + getPosicion() + " m");
 
-            contadorDormir++;
+            if (getPosicion() >= Carrera.META) {
+                Carrera.carreraTerminada = true;
+                System.out.println("Carrera terminada para: " + getNombre());
+                break;
+            }
+
             try {
-                Thread.sleep(1000);
+                //dormir
+                if (rand.nextDouble() < 0.2) {
+                    System.out.println(getNombre() + " durmiendo 5s...");
+                    Thread.sleep(5000);
+                } else {
+                    Thread.sleep(1000);
+                }
             } catch (InterruptedException e) {
-                System.out.println("¡" + getNombre() + " DESPERTO por el viento!");
+                System.out.println(getNombre() + " DESPERTO por el viento!");
             }
-        }//fin de los 50m
-
-        
-        System.out.println(getNombre() + " ha llegado al túnel y espera su turno...");
-
-		tunel.entrar(getNombre());
-		
-		//recorre el tunel (50 a 150 m)
-		while ( getPosicion() < 150) {
-			
-			if( getPosicion()%10==0 ) {
-				System.out.println(getNombre()+" piso un charco y corrio mas durante un segundo");
-				
-				
-				posicionaux+=5;//por el charco
-				setPosicion(posicionaux);
-				System.out.println(getNombre() + " dentro del túnel: " + posicionaux + " m");
-				System.out.println("--------");
-
-				
-				
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
-			} else {
-				posicionaux++;
-				setPosicion(posicionaux);
-				System.out.println(getNombre() + " dentro del túnel: " + posicionaux + " m");
-
-				
-				
-				try {
-					Thread.sleep(1000/getVelocidad());
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-		}
-
-		tunel.salir(getNombre());
-		
-		//while para llegar al final de la carrera 300m
-		while ( getPosicion() < 300 ) {
-			
-			if( getPosicion()%10==0 ) {
-				System.out.println(getNombre()+" piso un charco y corrio mas durante un segundo");
-				
-				
-				posicionaux+=5;//por el charco
-				setPosicion(posicionaux);
-				System.out.println(getNombre() + " avanza: " + posicionaux + " m");
-				System.out.println("--------");
-
-				
-				
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
-			} else {
-				posicionaux++;
-				setPosicion(posicionaux);
-				System.out.println(getNombre() + " avanza: " + posicionaux + " m");
-
-				
-				
-				try {
-					Thread.sleep(1000/getVelocidad());
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-		}
-		System.out.println("Carrear terminada para: "+getNombre() );
-		
-
-	}
+        }
+    }
 }

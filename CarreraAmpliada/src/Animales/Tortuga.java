@@ -1,169 +1,66 @@
 package Animales;
 
-import Carrera.Tunel;
-import Carrera.Viento;
+import java.util.Random;
+import Carrera.*;
 
-public class Tortuga extends Animal {
+public class Tortuga extends Animal{ 
+
+    private Random rand = new Random();
+
+    public Tortuga(String nombre, int velocidadBase, Tunel tunel) {
+        super(nombre, velocidadBase, tunel, null); 
+    }
 
     @Override
-	public String getNombre() {
-		// TODO Auto-generated method stub
-		return super.getNombre();
-	}
+    public void run() {
+        
+        while (getPosicion() < Carrera.META && !Carrera.carreraTerminada) {
+            
+            int avance = getVelocidad(); 
 
+            //charco
+            if (rand.nextDouble() < 0.1) {
+                System.out.println(getNombre() + " piso un charco y se resbala!");
+                avance = 0;
+            }
 
-	@Override
-	public void setNombre(String nombre) {
-		// TODO Auto-generated method stub
-		super.setNombre(nombre);
-	}
+            //tunel 50 a 150m
+            if (getPosicion() >= 50 && getPosicion() < 150) {
+                
+                tunel.entrar(getNombre());
 
+                while (getPosicion() < 150 && !Carrera.carreraTerminada) {
+                    
+                    int avanceTunel = getVelocidad() > 0 ? getVelocidad() : 1; 
+                    
+                    int nuevaPosicion = getPosicion() + avanceTunel;
+                    setPosicion(nuevaPosicion); 
 
-	@Override
-	public int getPosicion() {
-		// TODO Auto-generated method stub
-		return super.getPosicion();
-	}
+                    System.out.println(getNombre() + " DENTRO DEL TÚNEL: " + getPosicion() + " m");
+                    try { Thread.sleep(500); } catch (InterruptedException e) {}
+                }
+                
+                if (Carrera.carreraTerminada && getPosicion() < 150) {
+                    setPosicion(150);
+                    System.out.println(getNombre() + " FORZADO a salir del túnel a 150m por fin de carrera.");
+                }
 
+                tunel.salir(getNombre());
+            } else {
+                //fuera del tunel
+                int nuevaPosicion = getPosicion() + avance;
+                setPosicion(nuevaPosicion);
+            }
 
-	@Override
-	public void setPosicion(int posicion) {
-		// TODO Auto-generated method stub
-		super.setPosicion(posicion);
-	}
+            System.out.println(getNombre() + " avanza: " + getPosicion() + " m");
 
+            if (getPosicion() >= Carrera.META) {
+                Carrera.carreraTerminada = true;
+                System.out.println("Carrera terminada para: " + getNombre());
+                break;
+            }
 
-	@Override
-	public int getVelocidad() {
-		// TODO Auto-generated method stub
-		return super.getVelocidad();
-	}
-
-
-	@Override
-	public void setVelocidad(int velocidad) {
-		// TODO Auto-generated method stub
-		super.setVelocidad(velocidad);
-	}
-
-    public Tortuga(String nombre,int posicion,int velocidad_base,Tunel tunel,Viento viento) {
-        super(nombre, posicion,velocidad_base, tunel, viento);
+            try { Thread.sleep(1000); } catch (InterruptedException e) {}
+        }
     }
-    
-
-	public void run() {
-		//acquire
-		//relase
-		
-		
-		int posicionaux = 0;
-		try {
-			//avanza hacia el tunel  50 m
-			while ( getPosicion() < 50 ) {
-				
-				if( getPosicion()%10==0 ) {
-					System.out.println(getNombre()+" piso un charco y corrio mas durante un segundo");
-					
-					
-					posicionaux+=5;//por el charco
-					setPosicion(posicionaux);
-					System.out.println(getNombre() + " avanza: " + posicionaux + " m");
-					System.out.println("--------");
-
-					
-					
-					Thread.sleep(1000);
-				
-				} else {
-					posicionaux++;
-					setPosicion(posicionaux);
-					System.out.println(getNombre() + " avanza: " + posicionaux + " m");
-
-					
-					
-					Thread.sleep(1000/getVelocidad());
-				}
-				
-			}
-			
-
-			System.out.println(getNombre() + " ha llegado al túnel y espera su turno...");
-
-			//espera a que el tunel este libre
-			//carrera.acquire();//error
-			
-			
-			tunel.entrar(getNombre());
-			
-			//recorre el tunel (50 a 150 m)
-			while ( getPosicion() < 150) {
-				
-				if( getPosicion()%10==0 ) {
-					System.out.println(getNombre()+" piso un charco y corrio mas durante un segundo");
-					
-					
-					posicionaux+=5;//por el charco
-					setPosicion(posicionaux);
-					System.out.println(getNombre() + " dentro del túnel: " + posicionaux + " m");
-					System.out.println("--------");
-
-					
-					
-					Thread.sleep(1000);
-				
-				} else {
-					posicionaux++;
-					setPosicion(posicionaux);
-					System.out.println(getNombre() + " dentro del túnel: " + posicionaux + " m");
-
-					
-					
-					Thread.sleep(1000/getVelocidad());
-				}
-
-			}
-
-			tunel.salir(getNombre());
-			
-			//while para llegar al final de la carrera 300m
-			while ( getPosicion() < 300 ) {
-				
-				if( getPosicion()%10==0 ) {
-					System.out.println(getNombre()+" piso un charco y corrio mas durante un segundo");
-					
-					
-					posicionaux+=5;//por el charco
-					setPosicion(posicionaux);
-					System.out.println(getNombre() + " avanza: " + posicionaux + " m");
-					System.out.println("--------");
-
-					
-					
-					Thread.sleep(1000);
-				
-				} else {
-					posicionaux++;
-					setPosicion(posicionaux);
-					System.out.println(getNombre() + " avanza: " + posicionaux + " m");
-
-					
-					
-					Thread.sleep(1000/getVelocidad());
-				}
-				
-			}
-			System.out.println("Carrear terminada para: "+getNombre() );
-			
-
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		
-	}//fin run
-
-
-	
-	
-
 }

@@ -3,22 +3,21 @@ package Carrera;
 public class Tunel {
     private boolean ocupado = false;
 
-    public synchronized void entrar(String nombre) {
+    public synchronized void entrar(String nombreAnimal) {
         while (ocupado) {
             try {
                 wait();
             } catch (InterruptedException e) {
-                //o pongo esta exception o peta
-                System.out.println(nombre + " fue interrumpido, pero sigue esperando el túnel");
+                e.printStackTrace();
             }
         }
         ocupado = true;
+        System.out.println(nombreAnimal + " ha entrado en el túnel.");
     }
 
-
-    public synchronized void salir(String nombre) {
+    public synchronized void salir(String nombreAnimal) {
         ocupado = false;
-        System.out.println(nombre + " SALE del túnel");
-        notify();
+        System.out.println(nombreAnimal + " ha salido del túnel.");
+        notify(); 
     }
 }
