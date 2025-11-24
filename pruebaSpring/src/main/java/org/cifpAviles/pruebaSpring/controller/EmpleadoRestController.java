@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.cifpAviles.pruebaSpring.entities.Empleado;
+import org.cifpAviles.pruebaSpring.repositories.EmpleadoRepository;
 import org.cifpAviles.pruebaSpring.services.EmpleadoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,16 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("api/empleado")
 public class EmpleadoRestController {
+	private EmpleadoService empleadoService;
 	
-	private final EmpleadoService empleadoService;
-	
-	public EmpleadoRestController(EmpleadoService empleadoService) {
-		this.empleadoService = empleadoService;
-
+	public EmpleadoRestController(EmpleadoService empleadoService,EmpleadoRepository empleadoRepository) {
+		this.empleadoService=empleadoService;
 	}
 	
 	@GetMapping("info_empleado")
@@ -34,20 +34,18 @@ public class EmpleadoRestController {
 	@PostMapping("add_empleado")
 	public void crearEmpleado(@RequestBody Empleado empleado) {
 		empleadoService.insert(empleado);
-		
 	}
 	
 	@GetMapping("get_empleado/{id}")
 	@ResponseBody
-	public Optional<Empleado> obtenerEmpleadoPorId(@PathVariable Long id){
+	public Optional<Empleado> obtenerEmpleadoPorId(@PathVariable Long id) {
 		return empleadoService.findById(id);
 	}
 	
 	@DeleteMapping("delete_empleado/{id}")
 	public void eliminarEmpleadoPorId(@PathVariable Long id) {
-		Empleado emp = new Empleado();
+		Empleado emp=new Empleado();
 		emp.setId(id);
 		empleadoService.borrar(emp);
 	}
-	
 }
