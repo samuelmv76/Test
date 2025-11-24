@@ -1,68 +1,74 @@
 package Animales;
 
-import java.util.concurrent.Semaphore;
+import java.util.Random;
+import Carrera.*;
 
-public class Pajaro extends Animal implements Runnable{
+public class Pajaro extends Animal { 
 
-	public Pajaro(String string, Semaphore tunel) {
-		// TODO Auto-generated constructor stub
-	}
+    private Random rand = new Random();
 
-	@Override
-	public Semaphore getTunel() {
-		// TODO Auto-generated method stub
-		return super.getTunel();
-	}
 
-	@Override
-	public void setTunel(Semaphore tunel) {
-		// TODO Auto-generated method stub
-		super.setTunel(tunel);
-	}
+    public Pajaro(String nombre, int velocidadBase, Tunel tunel) {
+        super(nombre, velocidadBase, tunel, null); 
+    }
+
+
 
 	@Override
-	public String getNombre() {
-		// TODO Auto-generated method stub
-		return super.getNombre();
-	}
+    public void run() {
+        while (getPosicion() < Carrera.META && !Carrera.carreraTerminada) {
+            
+            int avance = getVelocidad(); 
 
-	@Override
-	public void setNombre(String nombre) {
-		// TODO Auto-generated method stub
-		super.setNombre(nombre);
-	}
+            //viento
+            if (Viento.hayViento()) {
+                avance -= 5;
+                System.out.println(getNombre() + " recibe viento " + (avance > 0 ? "A FAVOR (+5 m/s)" : "EN CONTRA (-5 m/s)"));
+            }
+            if (avance < 0) avance = 0; 
 
-	@Override
-	public int getPosicion() {
-		// TODO Auto-generated method stub
-		return super.getPosicion();
-	}
+            //charco
+            if (rand.nextDouble() < 0.05) {
+                System.out.println(getNombre() + " piso un charco y se resbala!");
+                avance = 0;
+            }
 
-	@Override
-	public void setPosicion(int posicion) {
-		// TODO Auto-generated method stub
-		super.setPosicion(posicion);
-	}
+            //tunel 50 a 150m
+            if (getPosicion() >= 50 && getPosicion() < 150) {
+                
+                tunel.entrar(getNombre());
 
-	@Override
-	public int getVelocidad() {
-		// TODO Auto-generated method stub
-		return super.getVelocidad();
-	}
+                while (getPosicion() < 150 && !Carrera.carreraTerminada) {
+                    
+                    int avanceTunel = getVelocidad() > 0 ? getVelocidad() : 1; 
+                    
+                    int nuevaPosicion = getPosicion() + avanceTunel;
+                    setPosicion(nuevaPosicion); 
 
-	@Override
-	public void setVelocidad(int velocidad) {
-		// TODO Auto-generated method stub
-		super.setVelocidad(velocidad);
-	}
+                    System.out.println(getNombre() + " DENTRO DEL TÚNEL: " + getPosicion() + " m");
+                    try { Thread.sleep(500); } catch (InterruptedException e) {}
+                }
+                
+                if (Carrera.carreraTerminada && getPosicion() < 150) {
+                    setPosicion(150);
+                    System.out.println(getNombre() + " FORZADO a salir del túnel a 150m por fin de carrera.");
+                }
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
+                tunel.salir(getNombre());
+            } else {
+                //fuera del tunel
+                int nuevaPosicion = getPosicion() + avance;
+                setPosicion(nuevaPosicion);
+            }
+            System.out.println(getNombre() + " avanza a " + getPosicion() + " m");
 
-	
+            if (getPosicion() >= Carrera.META) {
+                Carrera.carreraTerminada = true;
+                System.out.println("Carrera terminada para: " + getNombre());
+                break;
+            }
 
-
+            try { Thread.sleep(1000); } catch (InterruptedException e) {}
+        }
+    }
 }

@@ -1,30 +1,26 @@
 package Animales;
 
-import java.util.concurrent.Semaphore;
-
-//clase padre
-public class Animal{
+import Carrera.Tunel;
+import Carrera.Viento;
+public class Animal extends Thread{
 	
-	private String nombre = "Tortuga";
-	private int posicion;//siempre 0 al empezar
+	private String nombre;
+	private int posicion;//siempre 0 al empezar lo pongo desde el main
 	private int velocidad;
-	protected Semaphore tunel;
+	protected Tunel tunel;
+	protected Viento viento;
 	
+    protected static volatile boolean carreraTerminada = false;
+    protected static volatile String ganador = null;
 	
-	public Animal(String nombre, int posicion, int velocidad, Semaphore tunel) {
-		super();
-		this.nombre = nombre;
-		this.posicion = 0;
-		this.velocidad = velocidad;
-		this.tunel = tunel;
-	}
-	
-	public Semaphore getTunel() {
-		return tunel;
-	}
-	public void setTunel(Semaphore tunel) {
-		this.tunel = tunel;
-	}
+    public Animal(String nombre, int velocidad, Tunel tunel, Viento viento) {
+        this.nombre = nombre;
+        this.posicion = 0; //posicion inicial siempre 0
+        this.velocidad = velocidad;
+        this.tunel = tunel;
+    }
+
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -49,7 +45,20 @@ public class Animal{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 	
+    protected void comprobarGanador() {
+        if (posicion >= 300 && !carreraTerminada) {
+            carreraTerminada = true;
+            ganador = nombre;
+            System.out.println("GANADOR: " + ganador);
+        }
+    }
 	
 	
 }

@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43599b56-114b-40ec-b696-3e8d80b5c320" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Carrera/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Carrera/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Carrera/Tortuga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Carrera/Tortuga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarreraAmpliada/bin/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../CarreraAmpliada/bin/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarreraAmpliada/bin/Animales/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CarreraAmpliada/bin/Animales/Animal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarreraAmpliada/bin/Animales/Liebre.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CarreraAmpliada/bin/Animales/Liebre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarreraAmpliada/bin/Animales/Pajaro.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CarreraAmpliada/bin/Animales/Pajaro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarreraAmpliada/bin/Animales/Tortuga.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CarreraAmpliada/bin/Animales/Tortuga.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarreraAmpliada/bin/Carrera/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../CarreraAmpliada/bin/Carrera/main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarreraAmpliada/src/Animales/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CarreraAmpliada/src/Animales/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarreraAmpliada/src/Animales/Liebre.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CarreraAmpliada/src/Animales/Liebre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarreraAmpliada/src/Animales/Pajaro.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CarreraAmpliada/src/Animales/Pajaro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarreraAmpliada/src/Animales/Tortuga.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CarreraAmpliada/src/Animales/Tortuga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarreraAmpliada/src/Carrera/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CarreraAmpliada/src/Carrera/main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,23 +22,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="35FF11RdaQjz9PkDXJhz96Utahf" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/samue/Desktop/test/Test/Semaphore"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/samue/Desktop/test/Test/Semaphore&quot;
   }
-}]]></component>
+}</component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="43599b56-114b-40ec-b696-3e8d80b5c320" name="Changes" comment="" />

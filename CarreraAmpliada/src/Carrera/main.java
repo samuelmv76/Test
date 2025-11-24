@@ -1,26 +1,36 @@
 package Carrera;
 
-import java.util.concurrent.Semaphore;
-
 import Animales.*;
 
 public class main {
+    public static void main(String[] args) {
 
-	public static void main(String[] args) {
-        //creamos un semaforo con 1 permiso solo 1 tortuga puede estar en el tunel
-        Semaphore tunel = new Semaphore(1);
-
-        Tortuga mbappe = new Tortuga("mbappe",0,2,tunel);
+    	Tunel tunel = new Tunel();
+        Viento viento = new Viento();
         
-        Thread mbappeThread = new Thread(mbappe);
-        Thread balde = new Thread(new Liebre("Balde", tunel));
-        Thread federico = new Thread(new Pajaro("Federico", tunel));
+        
+        Tortuga tortuga = new Tortuga("Balde", 2, tunel); 
+        
+        Liebre liebre = new Liebre("Mbappe", 5, tunel, viento);
+        
+        Pajaro federico = new Pajaro("Federico", 3, tunel);
 
-        mbappeThread.start();
-        balde.start();
+        viento.registrarLiebre(liebre); 
+
+        viento.start();
+        tortuga.start();
+        liebre.start();
         federico.start();
-        
-        
-	}
+        try {
+            tortuga.join();
+            liebre.join();
+            federico.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        Carrera.carreraTerminada = true;
+
+        System.out.println("Carrera finalizada!");
+    }
 }

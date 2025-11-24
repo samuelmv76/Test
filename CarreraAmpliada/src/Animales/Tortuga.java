@@ -1,131 +1,66 @@
 package Animales;
 
-import java.util.concurrent.Semaphore;
+import java.util.Random;
+import Carrera.*;
 
-public class Tortuga extends Animal implements Runnable{
+public class Tortuga extends Animal{ 
 
-	public Tortuga(String string, Semaphore tunel) {
-		// TODO Auto-generated constructor stub
-		
-	}
-	
+    private Random rand = new Random();
 
-	public Tortuga(String nombre, int posicion, int velocidad, Semaphore tunel) {
-		super(nombre, posicion, velocidad, tunel);
-	}
+    public Tortuga(String nombre, int velocidadBase, Tunel tunel) {
+        super(nombre, velocidadBase, tunel, null); 
+    }
 
+    @Override
+    public void run() {
+        
+        while (getPosicion() < Carrera.META && !Carrera.carreraTerminada) {
+            
+            int avance = getVelocidad(); 
 
-	@Override
-	public Semaphore getTunel() {
-		// TODO Auto-generated method stub
-		return super.getTunel();
-	}
+            //charco
+            if (rand.nextDouble() < 0.1) {
+                System.out.println(getNombre() + " piso un charco y se resbala!");
+                avance = 0;
+            }
 
-	@Override
-	public void setTunel(Semaphore tunel) {
-		// TODO Auto-generated method stub
-		super.setTunel(tunel);
-	}
+            //tunel 50 a 150m
+            if (getPosicion() >= 50 && getPosicion() < 150) {
+                
+                tunel.entrar(getNombre());
 
-	@Override
-	public String getNombre() {
-		// TODO Auto-generated method stub
-		return super.getNombre();
-	}
+                while (getPosicion() < 150 && !Carrera.carreraTerminada) {
+                    
+                    int avanceTunel = getVelocidad() > 0 ? getVelocidad() : 1; 
+                    
+                    int nuevaPosicion = getPosicion() + avanceTunel;
+                    setPosicion(nuevaPosicion); 
 
-	@Override
-	public void setNombre(String nombre) {
-		// TODO Auto-generated method stub
-		super.setNombre(nombre);
-	}
+                    System.out.println(getNombre() + " DENTRO DEL TÚNEL: " + getPosicion() + " m");
+                    try { Thread.sleep(500); } catch (InterruptedException e) {}
+                }
+                
+                if (Carrera.carreraTerminada && getPosicion() < 150) {
+                    setPosicion(150);
+                    System.out.println(getNombre() + " FORZADO a salir del túnel a 150m por fin de carrera.");
+                }
 
-	@Override
-	public int getPosicion() {
-		// TODO Auto-generated method stub
-		return super.getPosicion();
-	}
+                tunel.salir(getNombre());
+            } else {
+                //fuera del tunel
+                int nuevaPosicion = getPosicion() + avance;
+                setPosicion(nuevaPosicion);
+            }
 
-	@Override
-	public void setPosicion(int posicion) {
-		// TODO Auto-generated method stub
-		super.setPosicion(posicion);
-	}
+            System.out.println(getNombre() + " avanza: " + getPosicion() + " m");
 
-	@Override
-	public int getVelocidad() {
-		// TODO Auto-generated method stub
-		return super.getVelocidad();
-	}
+            if (getPosicion() >= Carrera.META) {
+                Carrera.carreraTerminada = true;
+                System.out.println("Carrera terminada para: " + getNombre());
+                break;
+            }
 
-	@Override
-	public void setVelocidad(int velocidad) {
-		// TODO Auto-generated method stub
-		super.setVelocidad(velocidad);
-	}
-
-	@Override
-	public void run() {
-		//acquire
-		//relase
-		
-		
-		try {
-			//avanza hacia el tunel  50 m
-			//int i = getPosicion();//0
-			/*
-			for (i = 1; i <= 50/getVelocidad(); i++) {
-				System.out.println(getNombre() + " avanza " + i*getVelocidad() + " m");
-				Thread.sleep(1000);//2m/s por segundo
-			}
-			*/
-			for (int p = getPosicion(); p <= 50; p++) {
-			
-				System.out.println(getNombre() +" avanza "+ p + " m");
-				
-				Thread.sleep(1000/getVelocidad());// cada 0,5s +1 de posicion es igual cada 1s +2
-				
-			}
-
-			System.out.println(getNombre() + " ha llegado al túnel y espera su turno...");
-
-			//espera a que el tunel este libre
-			tunel.acquire();//error
-
-			System.out.println(getNombre() + " entra al túnel");
-
-			//recorre el tunel (50 a 150 m)
-			for (int p = getPosicion(); p <= 150; p++) {
-				
-				System.out.println(getNombre() + " dentro del túnel: " + p + " m");
-				
-				if(p%10==0 && p!=0) {
-					//que si la i es divisible por 10 la velocidad sea 5 es decir getVelocidad()+3 solo 1 segundo
-					System.out.println("Charca");
-					p += 3;
-					System.out.println("Posicion despues de la charca: "+p);
-				}
-				
-				Thread.sleep(1000/getVelocidad());
-			}
-
-			System.out.println(getNombre() + " ha salido del túnel");
-
-			//for para llegar al final de la carrera 300m
-			for (int p = getPosicion(); p <= 300;p++) {
-				System.out.println(getNombre() +" avanza "+ p + " m");
-				
-				Thread.sleep(1000/getVelocidad());// cada 0,5s +1 de posicion es igual cada 1s +2
-			}
-			
-			//libera el tunel
-			tunel.release();
-
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		
-	}
-	
-	
+            try { Thread.sleep(1000); } catch (InterruptedException e) {}
+        }
+    }
 }
