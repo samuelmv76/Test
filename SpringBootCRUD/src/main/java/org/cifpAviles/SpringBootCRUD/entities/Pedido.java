@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 @Table(name="Pedido")
 public class Pedido {
 
-	@Id // 2. Clave Primaria
+	@Id //clave Primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
