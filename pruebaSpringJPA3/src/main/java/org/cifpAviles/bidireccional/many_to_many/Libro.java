@@ -1,4 +1,4 @@
-package org.cifpAviles.unidireccional.many_to_many;
+package org.cifpAviles.bidireccional.many_to_many;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import jakarta.persistence.*;
 import jakarta.persistence.Table;
 
 
-@Entity(name="uni_libro_many_to_many")
-@Table(name="uni_libro_many_to_many")
+@Entity(name="bi_libro_many_to_many")
+@Table(name="bi_libro_many_to_many")
 public class Libro {
 
 	@Id
@@ -22,8 +22,9 @@ public class Libro {
 	private String editorial;
 	
 	@ManyToMany
-	@JoinTable(name="AutorLibroUnidireccional",
+	@JoinTable(name="AutorLibroBidireccional",
 	joinColumns=@JoinColumn(name="idLibro"),
-	inverseJoinColumns=@JoinColumn(name="idAutor"))
+	inverseJoinColumns=@JoinColumn(name="idAutor")
+	)
 	private List<Autor> listaAutores;
 }

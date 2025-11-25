@@ -1,20 +1,22 @@
-package org.cifpAviles.unidireccional.many_to_many;
+package org.cifpAviles.bidireccional.one_to_one;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-@Entity(name="uni_autor_many_to_many")
-@Table(name="uni_autor_many_to_many")
-public class Autor {
-
+@Entity(name="bi_parking_one_to_one")
+@Table(name="bi_parking_one_to_one")
+public class Parking {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
 	private String nombre;
-	private String pseudonimo;
+	
+	@OneToOne(mappedBy="parking")
+	private Empleado empleado;
 }
