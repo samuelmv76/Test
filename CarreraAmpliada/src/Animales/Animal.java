@@ -1,5 +1,6 @@
 package Animales;
 
+import Carrera.Liana;
 import Carrera.Tunel;
 import Carrera.Viento;
 public class Animal extends Thread{
@@ -9,6 +10,7 @@ public class Animal extends Thread{
 	private int velocidad;
 	protected Tunel tunel;
 	protected Viento viento;
+	protected Liana liana;
 	
     protected static volatile boolean carreraTerminada = false;
     protected static volatile String ganador = null;
@@ -45,6 +47,14 @@ public class Animal extends Thread{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+		 public Animal(String nombre, int velocidad, Liana liana) {
+		        this.nombre = nombre;
+		        this.posicion = 0; //posicion inicial siempre 0
+		        this.velocidad = velocidad;
+		        this.liana = liana;
+		    }
+
 
 	@Override
 	public void run() {

@@ -61,6 +61,7 @@ public class Tortuga extends Animal{
             }
 
             try { Thread.sleep(1000); } catch (InterruptedException e) {}
-        }
+        }//fin while
+        
     }
 }
